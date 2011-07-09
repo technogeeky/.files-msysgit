@@ -48,7 +48,7 @@ rem We here assume old behavior, to make sure that older platforms can still use
 rem this batch file to start their MSys environment.
 set BIN=""
 if EXIST bin\nul set BIN=bin\
-if EXIST %BIN%mintty.exe goto startmin
+rem if EXIST %BIN%mintty.exe goto startmin
 if EXIST %BIN%bash.exe goto startbash
 if EXIST %BIN%rxvt.exe goto startrxvt
 
