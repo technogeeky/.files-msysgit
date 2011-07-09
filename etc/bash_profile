@@ -1,0 +1,41 @@
+# Some good standards, which are not used if the user
+# creates his/her own .bashrc/.bash_profile
+
+export -n USERDOMAIN SYSTEMROOT SYSTEMDRIVE PROGRAMDATA PROGRAMFILES PUBLIC OS OS_VERSION PSMODULEPATH FP_NO_HOST_CHECK LIB PATH
+export -n WINPATH RUBYPATH VIMPATH VBOX_INSTALL_PATH NVPATH MINGWPATH HOMEPATH HOMEDRIVE HASKPATH GTKPATH  PATHEXT PROCESSOR_ARCHITECTURE PROCESSOR_ARCHITEW6432 PROCESSOR_IDENTIFIER PROCESSOR_LEVEL PROCESSOR_REVISION WINDIR
+export -n TMP TEMP LOGNAME LOGONSERVER LOCALAPPDATA INCLUDE COMSPEC COMMONPROGRAMFILES PROGRAMW6432 COMMONPROGRAMW6432 BIN APPDATA ALLUSERSPROFILE
+
+# we need a TEMP directory
+export TEMP='/tmp'
+
+# The strategy for managing paths:
+# 1. in msys.bat, kill all incoming paths.
+# 2. in profile, you get some paths, but kill the ~/bin path
+# 3. in here, kill everything and set the path by hand
+
+export PATH=".:/mingw/bin:/bin"
+
+# use a subdirectory for home, to get rid of all the windows crap
+export HOME="/home/$USERNAME"
+
+# a workaround to avoid a git submodule bug:
+
+if [ ! -e "/libexec/git-core/libiconv-2.dll" ]; then
+     if [ -e "/mingw/bin/libiconv-2.dll" ]; then
+        cp /mingw/bin/libiconv-2.dll /libexec/git-core/libiconv-2.dll
+     fi
+fi
+
+# use gvim instead of vim
+alias vim='/share/vim/vim73/gvim.exe $1'
+alias gvim=vim
+
+# make vim the EDITOR
+export EDITOR=vim
+
+
+alias less='less -r'
+# --show-control-chars: help showing Korean or accented characters
+alias ls='ls -F --color --show-control-chars'
+alias ll='ls -l'
+
