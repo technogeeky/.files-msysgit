@@ -22,5 +22,6 @@ mingw/
 share/
 src/
 ssl/
+sbin/
 wine-start.sh
 .gitmodules
